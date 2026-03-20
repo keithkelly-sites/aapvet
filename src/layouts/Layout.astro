@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -43,9 +45,9 @@ const navLinks = [
 
   <link rel="icon" href="/images/all-about-pets-veterinary-hospital-logo.jpg" type="image/jpeg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <Font cssVariable="--font-display" preload />
+  <Font cssVariable="--font-body" preload />
+  <ClientRouter />
 
   <script async src="https://api.keithkelly.dev/d/s"></script>
   <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init({endpoint:"https://api.keithkelly.dev/d/e"})</script>
