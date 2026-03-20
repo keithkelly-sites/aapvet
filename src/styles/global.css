@@ -70,9 +70,11 @@ h3 {
   line-height: 1.3;
 }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
+@layer base {
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
