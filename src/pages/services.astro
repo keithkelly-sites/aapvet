@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="Veterinary Services" description="Dental care, laser therapy, surgery, preventative care and more for cats and dogs in Canonsburg and Washington, PA.">
+
+  <!-- Page Hero -->
+  <section class="bg-primary text-primary-foreground relative" style="clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 11px);"></div>
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-24 md:pb-32 relative">
+      <h1 class="text-primary-foreground mb-4">Veterinary Services</h1>
+      <p class="text-primary-foreground/80 text-lg max-w-2xl">Comprehensive care for cats and dogs in Canonsburg and Washington, PA.</p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="bg-background">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <p class="text-foreground/70 leading-relaxed mb-10 max-w-2xl">We offer a full range of veterinary services, from routine wellness exams to advanced diagnostics and surgery. At All About Pets Veterinary Hospital, you can trust that your pets are in great hands.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: 'Dental Care', img: '/images/dental-care.jpg', alt: 'Person cleaning cat teeth with a brush', desc: 'Complete dental exams, professional cleanings, and extractions. Regular dental care prevents painful infections and keeps your pet comfortable.' },
+          { name: 'Laser Therapy', img: '/images/pet-laser-therapy.jpg', alt: 'Dog getting laser therapy treatment', desc: 'Pain-free laser treatments that reduce inflammation, promote cell repair, and speed healing. Effective for arthritis, surgical recovery, and chronic conditions.' },
+          { name: 'Preventative Care', img: '/images/pet-preventative-care.jpg', alt: 'Dog and cat laying together', desc: 'Wellness exams, vaccinations, and parasite prevention tailored to your pet. We use only the safest and most effective vaccines, customized to individual needs.' },
+          { name: 'Nutritional Counseling', img: '/images/dog-is-eating-food-from-bowl.jpg', alt: 'Dog eating food from a bowl', desc: 'Personalized diet plans for weight management, allergies, and age-specific needs. Proper nutrition is the foundation of a long, healthy life.' },
+          { name: 'Pharmacy', img: '/images/pet-pharmacy2-1.jpg', alt: 'Black and white cat sitting in a clinic', desc: 'Fully stocked in-house pharmacy for immediate prescriptions. Our online pharmacy is also available 24/7 for refills and home delivery.' },
+          { name: 'Microchipping', img: '/images/a-veterinarian-is-scanning-a-dog-for-microchip.jpg', alt: 'A veterinarian scanning a dog for a microchip', desc: 'Permanent identification that lasts a lifetime. A quick, simple procedure that dramatically increases the chance of reuniting lost pets with their families.' },
+          { name: 'Pain Management', img: '/images/pet-pain-management.jpg', alt: 'Senior pug walking outside', desc: 'Multi-modal pain relief plans so your pet stays comfortable during illness, after surgery, or through chronic conditions like arthritis.' },
+          { name: 'Radiology', img: '/images/pet-x-ray-image-under-x-ray-machine.jpg', alt: 'Pet X-ray being taken under an X-ray machine', desc: 'Digital X-rays provide fast, accurate diagnostics right here in our hospital. No referral needed for most imaging needs.' },
+          { name: 'Surgery', img: '/images/pet-surgery.jpg', alt: 'Cat with a surgical collar', desc: 'Soft tissue and routine surgical procedures performed with careful anesthetic monitoring and attentive post-operative care.' },
+        ].map(service => (
+          <div class="bg-background rounded-lg border-t-2 border-accent overflow-hidden shadow-[0_1px_3px_rgba(28,28,26,0.06),0_4px_12px_rgba(28,28,26,0.04)]">
+            <div class="h-48 overflow-hidden">
+              <Image
+                src={service.img}
+                alt={service.alt}
+                width={400}
+                height={300}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5">
+              <h3 class="text-base mb-2">{service.name}</h3>
+              <p class="text-sm text-foreground/60 leading-relaxed">{service.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Online Pharmacy Banner -->
+  <section class="bg-muted">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-12 md:py-14">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h2 class="text-xl mb-2">Online Pharmacy</h2>
+          <p class="text-foreground/70">Need medications refilled? Our online pharmacy is available 24/7 for prescriptions and home delivery.</p>
+        </div>
+        <a href="https://aapvetcanonsburg.vetsfirstchoice.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-primary/90 whitespace-nowrap">Visit Online Pharmacy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Options -->
+  <section class="bg-background">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="mb-4">Flexible Payment Options</h2>
+          <p class="text-foreground/70 leading-relaxed mb-4">We accept all major credit cards, debit cards, cash, and CareCredit. Whether it's a routine checkup or an unexpected procedure, we want to make quality care accessible for every pet.</p>
+          <p class="text-foreground/70 leading-relaxed mb-6">CareCredit lets you say "yes" to the best treatment for your pet immediately and pay for it over time with monthly payments that fit your budget. Highlights include extended payment plans, interest-free periods for 6 months, and quick approval.</p>
+          <a href="https://www.carecredit.com/" target="_blank" rel="noopener noreferrer" class="text-primary font-semibold text-sm hover:underline">Apply for CareCredit &rarr;</a>
+        </div>
+        <div class="flex items-center justify-center">
+          <Image
+            src="/images/carecredit-logo.jpeg"
+            alt="CareCredit logo"
+            width={400}
+            height={217}
+            class="w-full max-w-sm h-auto rounded-lg"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="bg-primary">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-14 md:py-16 text-center">
+      <h2 class="text-primary-foreground mb-6">Questions about a specific service?</h2>
+      <a href="/contact" class="inline-flex items-center bg-accent text-accent-foreground font-semibold px-8 py-3.5 rounded-full text-sm hover:bg-accent/90">Contact Us</a>
+    </div>
+  </section>
+
+</Layout>

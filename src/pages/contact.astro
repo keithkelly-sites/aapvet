@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="Contact Us" description="Reach All About Pets Veterinary Hospital in Canonsburg or Washington, PA. Two locations, open most weekdays.">
+
+  <!-- Page Hero -->
+  <section class="bg-primary text-primary-foreground relative" style="clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 11px);"></div>
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-24 md:pb-32 relative">
+      <h1 class="text-primary-foreground mb-4">Get in Touch</h1>
+      <p class="text-primary-foreground/80 text-lg max-w-2xl">We are here Monday through Thursday and Friday mornings, across our two locations.</p>
+    </div>
+  </section>
+
+  <!-- Two-Location Contact Cards -->
+  <section class="bg-background">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Canonsburg -->
+        <div class="border-t-2 border-primary rounded-lg bg-background p-8 shadow-[0_1px_3px_rgba(28,28,26,0.06),0_4px_12px_rgba(28,28,26,0.04)]">
+          <h2 class="text-xl mb-4">Canonsburg</h2>
+          <div class="space-y-3 mb-6">
+            <p class="text-foreground/70">
+              <span class="font-semibold text-foreground">Address:</span> 155 E Pike St, Canonsburg, PA 15317
+            </p>
+            <p class="text-foreground/70">
+              <span class="font-semibold text-foreground">Phone:</span>
+              <a href="tel:7247455503" class="text-primary font-semibold hover:underline">(724) 745-5503</a>
+            </p>
+            <p class="text-foreground/70">
+              <span class="font-semibold text-foreground">Text:</span>
+              <a href="tel:7246338216" class="text-primary hover:underline">(724) 633-8216</a>
+            </p>
+          </div>
+          <table class="w-full text-sm mb-6">
+            <thead>
+              <tr><th class="text-left font-semibold text-foreground pb-2" colspan="2">Hours</th></tr>
+            </thead>
+            <tbody class="text-foreground/70">
+              <tr><td class="py-1">Monday</td><td class="py-1 text-right">7:00 AM - 4:00 PM</td></tr>
+              <tr><td class="py-1">Tuesday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Wednesday</td><td class="py-1 text-right">10:00 AM - 7:00 PM</td></tr>
+              <tr><td class="py-1">Thursday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Friday</td><td class="py-1 text-right">7:00 AM - 12:00 PM</td></tr>
+              <tr><td class="py-1">Saturday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Sunday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+            </tbody>
+          </table>
+          <a href="https://goo.gl/maps/QMbPWvmcKiK28B9aA" target="_blank" rel="noopener noreferrer" class="text-primary font-semibold text-sm hover:underline">View on Google Maps &rarr;</a>
+        </div>
+
+        <!-- Washington -->
+        <div class="border-t-2 border-accent rounded-lg bg-background p-8 shadow-[0_1px_3px_rgba(28,28,26,0.06),0_4px_12px_rgba(28,28,26,0.04)]">
+          <h2 class="text-xl mb-4">Washington</h2>
+          <div class="space-y-3 mb-6">
+            <p class="text-foreground/70">
+              <span class="font-semibold text-foreground">Address:</span> 829 Jefferson Ave, Washington, PA 15301
+            </p>
+            <p class="text-foreground/70">
+              <span class="font-semibold text-foreground">Phone:</span>
+              <a href="tel:7246338216" class="text-primary font-semibold hover:underline">(724) 633-8216</a>
+            </p>
+            <p class="text-foreground/70">
+              <span class="font-semibold text-foreground">Text:</span>
+              <a href="tel:7246338216" class="text-primary hover:underline">(724) 633-8216</a>
+            </p>
+          </div>
+          <table class="w-full text-sm mb-6">
+            <thead>
+              <tr><th class="text-left font-semibold text-foreground pb-2" colspan="2">Hours</th></tr>
+            </thead>
+            <tbody class="text-foreground/70">
+              <tr><td class="py-1">Monday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Tuesday</td><td class="py-1 text-right">7:00 AM - 4:00 PM</td></tr>
+              <tr><td class="py-1">Wednesday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Thursday</td><td class="py-1 text-right">10:00 AM - 7:00 PM</td></tr>
+              <tr><td class="py-1">Friday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Saturday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+              <tr><td class="py-1">Sunday</td><td class="py-1 text-right text-foreground/40">Closed</td></tr>
+            </tbody>
+          </table>
+          <a href="https://goo.gl/maps/xhbDRCDundaSHjyHA" target="_blank" rel="noopener noreferrer" class="text-primary font-semibold text-sm hover:underline">View on Google Maps &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="bg-muted">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12">
+        <div>
+          <h2 class="mb-6">Send Us a Message</h2>
+          <form action="#" method="POST" class="space-y-5">
+            <div>
+              <label for="name" class="block text-sm font-medium text-foreground mb-1.5">Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-foreground mb-1.5">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-foreground mb-1.5">Phone</label>
+              <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+            </div>
+            <div>
+              <label for="location" class="block text-sm font-medium text-foreground mb-1.5">Preferred Location</label>
+              <select id="location" name="location" class="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                <option value="">Select a location</option>
+                <option value="canonsburg">Canonsburg</option>
+                <option value="washington">Washington</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-foreground mb-1.5">Message <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-y"></textarea>
+            </div>
+            <button type="submit" class="inline-flex items-center bg-primary text-primary-foreground font-semibold px-8 py-3.5 rounded-full text-sm hover:bg-primary/90">Send Message</button>
+          </form>
+          <p class="form-notice text-sm text-foreground/50 mt-4 italic">This form will be active when the site goes live.</p>
+        </div>
+
+        <div class="space-y-6 lg:pt-12">
+          <div>
+            <h3 class="text-lg mb-3">Email</h3>
+            <a href="mailto:allaboutpets@aapvet.com" class="text-primary font-semibold hover:underline">allaboutpets@aapvet.com</a>
+          </div>
+          <div>
+            <h3 class="text-lg mb-3">Text Us</h3>
+            <p class="text-foreground/70 text-sm mb-2">For general information, questions, or appointment requests:</p>
+            <a href="tel:7246338216" class="text-primary font-semibold hover:underline">(724) 633-8216</a>
+          </div>
+          <div>
+            <h3 class="text-lg mb-3">Follow Us</h3>
+            <a href="https://www.facebook.com/aapvet/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+          <div>
+            <h3 class="text-lg mb-3">Financing</h3>
+            <p class="text-foreground/70 text-sm">CareCredit financing available. <a href="https://www.carecredit.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Learn more</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email and Social Strip -->
+  <section class="bg-primary">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-6">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm">
+        <a href="mailto:allaboutpets@aapvet.com" class="text-primary-foreground/80 hover:text-primary-foreground font-medium">allaboutpets@aapvet.com</a>
+        <span class="hidden sm:inline text-primary-foreground/30">|</span>
+        <a href="https://www.facebook.com/aapvet/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Follow on Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Maps Embeds -->
+  <section class="bg-background">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <h2 class="mb-8 text-center">Find Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <p class="text-sm font-semibold text-foreground mb-3">Canonsburg: 155 E Pike St, Canonsburg, PA 15317</p>
+          <iframe
+            title="All About Pets Veterinary Hospital Canonsburg location on Google Maps"
+            src="https://www.google.com/maps?q=155+E+Pike+St%2C+Canonsburg%2C+PA+15317&output=embed"
+            width="100%"
+            height="350"
+            style="border: 0; border-radius: 8px;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-foreground mb-3">Washington: 829 Jefferson Ave, Washington, PA 15301</p>
+          <iframe
+            title="All About Pets Veterinary Hospital Washington location on Google Maps"
+            src="https://www.google.com/maps?q=829+Jefferson+Ave%2C+Washington%2C+PA+15301&output=embed"
+            width="100%"
+            height="350"
+            style="border: 0; border-radius: 8px;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

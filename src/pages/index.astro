@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="Veterinary Care in Canonsburg and Washington, PA" description="Full-service vet hospital serving Canonsburg and Washington, PA. Honest, compassionate care for cats and dogs, led by Dr. Michele Sacksteder, DVM.">
+
+  <!-- Hero -->
+  <section class="bg-background relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,_rgba(45,90,61,0.04)_0%,_transparent_70%)]"></div>
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 pt-24 md:pt-36 pb-16 md:pb-20 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <h1 class="text-foreground mb-4">Honest Care for the Pets You Love</h1>
+          <div class="w-[60px] h-[2px] bg-primary mb-6"></div>
+          <p class="text-lg text-foreground/70 leading-relaxed mb-8 max-w-lg">Two locations in Canonsburg and Washington, PA. Together open Monday through Thursday and Friday mornings.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/about" class="inline-flex items-center bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-primary/90">Meet Our Team</a>
+            <a href="/services" class="inline-flex items-center border-2 border-primary text-primary font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-primary/5">See Our Services</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(28,28,26,0.08)]">
+            <Image
+              src="/images/img-2.jpg"
+              alt="Happy golden retriever smiling outdoors in nature"
+              width={640}
+              height={360}
+              class="w-full h-auto object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <section class="bg-muted border-y border-border">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-5 md:py-7">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-0 sm:divide-x divide-border">
+        {[
+          'Owner-Operated Practice',
+          'Dr. Michele Sacksteder, DVM',
+          'Cats and Dogs Welcome',
+          'Two Convenient Locations'
+        ].map(signal => (
+          <p class="text-xs sm:text-[13px] font-medium text-foreground/60 uppercase tracking-widest sm:px-6 md:px-8 text-center">{signal}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="bg-muted">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <h2 class="mb-10">What We Offer</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { name: 'Dental Care', icon: '/images/pet-dental-care-icon.jpg', desc: 'Complete dental exams, cleanings, and extractions for cats and dogs.' },
+          { name: 'Laser Therapy', icon: '/images/pet-laser-icon.jpg', desc: 'Pain-free laser treatments to reduce inflammation and speed healing.' },
+          { name: 'Preventative Care', icon: '/images/pet-preventive-care.jpg', desc: 'Wellness exams, vaccinations, and parasite prevention tailored to your pet.' },
+          { name: 'Nutritional Counseling', icon: '/images/pet-nutritional-counseling-icon.jpg', desc: 'Personalized diet plans to keep your pet at a healthy weight.' },
+          { name: 'Surgery', desc: 'Soft tissue and routine surgical procedures with attentive monitoring.' },
+          { name: 'Pharmacy', desc: 'Fully stocked in-house pharmacy plus 24/7 online ordering.' },
+          { name: 'Microchipping', desc: 'Permanent identification to reunite lost pets with their families.' },
+          { name: 'Pain Management', desc: 'Multi-modal pain relief so your pet stays comfortable during recovery.' },
+          { name: 'Radiology', desc: 'Digital X-rays for fast, accurate diagnostics on-site.' },
+        ].map(service => (
+          <div class="bg-background rounded-lg border-t-2 border-accent p-6 shadow-[0_1px_3px_rgba(28,28,26,0.06),0_4px_12px_rgba(28,28,26,0.04)]">
+            {service.icon && (
+              <Image
+                src={service.icon}
+                alt={`${service.name} icon`}
+                width={56}
+                height={56}
+                class="w-14 h-14 object-contain mb-4 rounded-lg"
+              />
+            )}
+            {!service.icon && (
+              <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3.5a1 1 0 011-1c.456 0 .91.159 1.258.437.14.112.262.243.362.39A7.004 7.004 0 0118 8.5c0 1.176-.288 2.284-.795 3.26a4.5 4.5 0 01-3.464 2.49H8.5m-2.367-.5A6.969 6.969 0 015 10.5c0-.813.139-1.593.394-2.318m.239 5.318H4.5a1.5 1.5 0 01-1.5-1.5V10a1.5 1.5 0 011.5-1.5h1" /></svg>
+              </div>
+            )}
+            <h3 class="text-base mb-2">{service.name}</h3>
+            <p class="text-sm text-foreground/60 leading-relaxed">{service.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8">
+        <a href="/services" class="text-primary font-semibold text-sm hover:underline">View All Services &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two-Location Banner -->
+  <section class="bg-primary text-primary-foreground relative" style="clip-path: polygon(0 0, 100% 4%, 100% 96%, 0 100%);">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 11px);"></div>
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-20 md:py-24 relative">
+      <h2 class="text-primary-foreground text-center mb-12">Two Locations, One Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0">
+        <div class="md:pr-10 md:border-r md:border-accent/40">
+          <h3 class="text-primary-foreground text-xl mb-4">Canonsburg</h3>
+          <p class="text-primary-foreground/80 mb-2">155 E Pike St, Canonsburg, PA 15317</p>
+          <p class="text-primary-foreground/80 mb-4">
+            <a href="tel:7247455503" class="text-primary-foreground hover:text-accent font-semibold">(724) 745-5503</a>
+          </p>
+          <div class="text-sm text-primary-foreground/70 space-y-1 mb-4">
+            <p>Monday: 7:00 AM - 4:00 PM</p>
+            <p>Wednesday: 10:00 AM - 7:00 PM</p>
+            <p>Friday: 7:00 AM - 12:00 PM</p>
+          </div>
+          <a href="https://goo.gl/maps/QMbPWvmcKiK28B9aA" target="_blank" rel="noopener noreferrer" class="text-accent text-sm font-semibold hover:underline">View on Google Maps &rarr;</a>
+        </div>
+        <div class="md:pl-10">
+          <h3 class="text-primary-foreground text-xl mb-4">Washington</h3>
+          <p class="text-primary-foreground/80 mb-2">829 Jefferson Ave, Washington, PA 15301</p>
+          <p class="text-primary-foreground/80 mb-4">
+            <a href="tel:7246338216" class="text-primary-foreground hover:text-accent font-semibold">(724) 633-8216</a>
+          </p>
+          <div class="text-sm text-primary-foreground/70 space-y-1 mb-4">
+            <p>Tuesday: 7:00 AM - 4:00 PM</p>
+            <p>Thursday: 10:00 AM - 7:00 PM</p>
+          </div>
+          <a href="https://goo.gl/maps/xhbDRCDundaSHjyHA" target="_blank" rel="noopener noreferrer" class="text-accent text-sm font-semibold hover:underline">View on Google Maps &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-background">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+      <h2 class="mb-10">What Pet Owners Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { quote: "First-time visit, and I was very pleased with the outcome. They were super polite and professional. Extremely knowledgeable, too, which shouldn't have to be said but unfortunately needs to be, and it was very much appreciated. They were very sweet and patient with my 2 Pits. Normally when I say I have a Pit they turn me away, but not them. They were so welcoming and showed my babies love.", author: 'Jelsamina C.' },
+          { quote: "Dr. Sacksteder and her staff have gone above and beyond to take care of my pup. She's a rescue with lots of anxiety and doesn't do well with strangers, but they've all been so patient and understanding and have worked with her every step of the way to provide the best care possible. I'll never take my pets anywhere else.", author: 'Becky P.' },
+          { quote: "Been coming here for years. It's the level of care, compassion, and love they have for our animals that keeps us coming back. Amazing people!", author: 'Patrick K.' },
+        ].map(testimonial => (
+          <article class="bg-background border-l-[3px] border-accent pl-5 pr-4 py-4">
+            <blockquote class="text-sm italic text-foreground/70 leading-relaxed mb-4">&ldquo;{testimonial.quote}&rdquo;</blockquote>
+            <p class="font-display font-semibold text-sm text-foreground">{testimonial.author}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="bg-background">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 pb-16 md:pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="rounded-2xl overflow-hidden">
+          <Image
+            src="/images/cat-and-dog.jpg"
+            alt="Cat and dog sitting together in bed"
+            width={560}
+            height={448}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <h2 class="mb-4">A Practice Built on Compassion</h2>
+          <p class="text-foreground/70 leading-relaxed mb-6">Our mission is to deliver honest, compassionate, and personalized care for pet owners and their pets, caring for and cherishing each patient as the beloved family member they are.</p>
+          <a href="/about" class="inline-flex items-center text-primary font-semibold text-sm hover:underline">Meet Dr. Sacksteder &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="bg-accent">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-12 py-14 md:py-16 text-center">
+      <h2 class="text-accent-foreground mb-6">Ready to schedule a visit?</h2>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+        <a href="tel:7247455503" class="text-2xl font-display font-bold text-accent-foreground hover:underline">(724) 745-5503</a>
+        <a href="/contact" class="inline-flex items-center bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-primary/90">Contact Us</a>
+      </div>
+      <p class="text-sm text-accent-foreground/70">CareCredit financing available for qualified patients.</p>
+    </div>
+  </section>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "VeterinaryCare",
+    "name": "All About Pets Veterinary Hospital",
+    "url": "https://aapvet.keithkelly.dev",
+    "telephone": "(724) 745-5503",
+    "email": "allaboutpets@aapvet.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "155 E Pike St",
+      "addressLocality": "Canonsburg",
+      "addressRegion": "PA",
+      "postalCode": "15317",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "07:00", "closes": "16:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "10:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "07:00", "closes": "12:00" }
+    ],
+    "sameAs": ["https://www.facebook.com/aapvet/"],
+    "department": {
+      "@type": "VeterinaryCare",
+      "name": "All About Pets Veterinary Hospital - Washington",
+      "telephone": "(724) 633-8216",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "829 Jefferson Ave",
+        "addressLocality": "Washington",
+        "addressRegion": "PA",
+        "postalCode": "15301",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "07:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "10:00", "closes": "19:00" }
+      ]
+    }
+  })} />
+
+</Layout>
