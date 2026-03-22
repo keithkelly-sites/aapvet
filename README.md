@@ -1,2 +1,0 @@
-# aapvet
-Client site: aapvet
