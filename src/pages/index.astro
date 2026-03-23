@@ -1,10 +1,33 @@
 ---
+/**
+ * DESIGN CONCEPT: "The Quiet Confidence of Care"
+ *
+ * Inspired by the Awwwards-nominated Vancouver Veterinary site (dark charcoal + warm
+ * accent, Inter Tight, editorial sophistication) and editorial magazine layouts that
+ * treat photography as art. This practice doesn't need to shout. The reviews tell the
+ * story — patience, compassion, going above and beyond. The design reflects that:
+ * confident, unhurried, warm.
+ *
+ * Dark navy backgrounds let the warm staff photography breathe. Playfair Display at
+ * dramatic scales creates architectural moments. The terracotta accent, drawn from
+ * Michele's red scrubs, threads through CTAs and hover states.
+ *
+ * SIGNATURE MOMENT: The hero — massive stacked serif typography ("ALL ABOUT / PETS")
+ * placed against a diagonal-cropped golden retriever photo. The name becomes
+ * architecture, not just text. The warmth of the photo against the dark ground makes
+ * you stop scrolling.
+ *
+ * Reference sites that influenced this approach:
+ * - Vancouver Veterinary (awwwards.com) — clinical sophistication, dark palette
+ * - Editorial magazine layouts — dramatic type scale, photo-first hierarchy
+ * - Modern healthcare sites — trustworthy dark themes, warm accent colors
+ */
+
 import Layout from '../layouts/Layout.astro';
 
-/** @type application/ld+json — rendered via Layout */
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "VeterinaryCare",
+  "@type": ["LocalBusiness", "VeterinaryCare"],
   "name": "All About Pets Veterinary Hospital",
   "description": "Full-service veterinary hospital treating cats and dogs in Canonsburg and Washington, PA.",
   "url": "https://aapvet.keithkelly.dev",
@@ -14,18 +37,40 @@ const jsonLd = {
     { "@type": "PostalAddress", "streetAddress": "155 E Pike St", "addressLocality": "Canonsburg", "addressRegion": "PA", "postalCode": "15317" },
     { "@type": "PostalAddress", "streetAddress": "829 Jefferson Ave", "addressLocality": "Washington", "addressRegion": "PA", "postalCode": "15301" }
   ],
-  "image": "https://aapvet.keithkelly.dev/images/cat-and-dog.jpg",
-  "priceRange": "$$",
-  "sameAs": ["https://www.facebook.com/aapvet/"]
+  "image": "https://aapvet.keithkelly.dev/images/img-2.jpg",
+  "priceRange": "$",
+  "sameAs": ["https://www.facebook.com/aapvet/"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "07:00", "closes": "16:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "07:00", "closes": "16:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "10:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "10:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "07:00", "closes": "12:00" }
+  ]
 };
 
 const services = [
-  { name: 'Dental Care', href: '/services/dental-care', image: '/images/dental-care.png' },
-  { name: 'Laser Therapy', href: '/services/laser-therapy', image: '/images/pet-laser-therapy.png' },
-  { name: 'Preventative Care', href: '/services/preventative-care', image: '/images/pet-preventative-care.png' },
-  { name: 'Surgery', href: '/services/surgery', image: '/images/pet-surgery.png' },
+  { name: 'Dental Care', href: '/services/dental-care', image: '/images/dental-care.jpg' },
+  { name: 'Laser Therapy', href: '/services/laser-therapy', image: '/images/pet-laser-therapy.jpg' },
+  { name: 'Preventative Care', href: '/services/preventative-care', image: '/images/pet-preventative-care.jpg' },
+  { name: 'Surgery', href: '/services/surgery', image: '/images/pet-surgery.jpg' },
   { name: 'Pharmacy', href: '/services/pharmacy', image: '/images/pet-pharmacy2-1.jpg' },
-  { name: 'Radiology', href: '/services/radiology', image: '/images/pet-x-ray-image-under-x-ray-machine.png' },
+  { name: 'Radiology', href: '/services/radiology', image: '/images/pet-x-ray-image-under-x-ray-machine.jpg' },
+];
+
+const reviews = [
+  {
+    text: "Dr. Sacksteder and her staff have gone above and beyond to take care of my pup. She's a rescue with lots of anxiety and doesn't do well with strangers, but they've all been so patient and understanding.",
+    author: 'Becky P.',
+  },
+  {
+    text: "Dr. S is so thorough and caring. She listens and takes the time to answer all questions and concerns and help my Georgie feel better. Highly recommend this vet.",
+    author: 'Susan F.',
+  },
+  {
+    text: "Been coming here for years. It's the level of care, compassion, and love they have for our animals that keeps us coming back. Amazing people!",
+    author: 'Patrick K.',
+  },
 ];
 ---
 
@@ -34,156 +79,587 @@ const services = [
   description="Full-service veterinary hospital treating cats and dogs in Canonsburg and Washington, PA. Led by Dr. Michele Sacksteder, DVM. Honest, compassionate, personalized care."
   jsonLd={jsonLd}
 >
-  <!-- Hero — open, personal -->
-  <section class="bg-teal-mist">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-28">
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div>
-          <p class="text-teal text-sm font-semibold uppercase tracking-wider mb-4">Canonsburg & Washington, PA</p>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-charcoal leading-[1.1] mb-6">
-            Your Pets Are<br />Family. We Treat<br />Them That Way.
-          </h1>
-          <p class="text-slate text-lg leading-relaxed max-w-md mb-8">
-            Honest, compassionate, individualized care from Dr. Michele Sacksteder and her team — two locations serving the greater Pittsburgh area.
+  <!-- application/ld+json LocalBusiness structured data passed via jsonLd prop -->
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/images/img-2.jpg" alt="Happy golden retriever smiling outdoors" class="hero-photo" loading="eager" fetchpriority="high" />
+      <div class="hero-gradient"></div>
+    </div>
+
+    <div class="hero-content wrap-wide">
+      <div class="hero-text">
+        <p class="hero-location">Canonsburg & Washington, PA</p>
+        <h1 class="hero-title">
+          <span class="hero-line-1">All About</span>
+          <span class="hero-line-2">Pets</span>
+        </h1>
+        <p class="hero-subtitle">Veterinary Hospital</p>
+        <p class="hero-tagline">Doing what's best for your pet everyday</p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn btn-warm">Schedule a Visit</a>
+          <a href="tel:7247455503" class="btn btn-outline">(724) 745-5503</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT INTRO ===== -->
+  <section class="section section-light about-intro">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-photo reveal">
+          <img src="/images/michele.webp" alt="Dr. Michele Sacksteder, DVM, holding a dog" class="img-cover" loading="lazy" />
+        </div>
+        <div class="about-text">
+          <p class="eyebrow">About the Practice</p>
+          <h2>Led by Dr. Michele Sacksteder</h2>
+          <p>
+            All About Pets Veterinary Hospital is a full-service veterinary hospital treating cats and dogs. Our team takes the time to get to know every patient. We offer innovative veterinary services through modern technology and continuous staff training.
           </p>
-          <div class="flex flex-wrap gap-3">
-            <a href="/contact" class="btn btn-teal">
-              Schedule a Visit
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
-            <a href="tel:7247455503" class="btn btn-outline">(724) 745-5503</a>
-          </div>
-        </div>
-        <div>
-          <img
-            src="/images/cat-and-dog.jpg"
-            alt="A happy cat and dog together"
-            class="w-full rounded-2xl shadow-xl object-cover aspect-[4/3]"
-            width="640" height="480" loading="eager"
-          />
+          <p>
+            Our mission is to deliver honest, compassionate, and personalized care for pet owners and their pets, caring for and cherishing each patient as the beloved family member they are.
+          </p>
+          <a href="/about" class="btn btn-outline-dark" style="margin-top:var(--space-sm);">More About Us</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Dr. Michele — the heart of the practice -->
-  <section class="py-20 lg:py-28">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid md:grid-cols-5 gap-10 items-start reveal">
-          <div class="md:col-span-2">
-            <img
-              src="/images/michele.webp"
-              alt="Dr. Michele Sacksteder, DVM"
-              class="w-full rounded-xl shadow-md object-cover aspect-[3/4]"
-              width="320" height="427" loading="lazy"
-            />
-            <div class="mt-4">
-              <p class="font-display font-bold text-charcoal">Dr. Michele Sacksteder</p>
-              <p class="text-teal text-sm font-medium">DVM, Practice Owner</p>
-            </div>
-          </div>
-          <div class="md:col-span-3">
-            <blockquote class="text-xl lg:text-2xl text-charcoal leading-relaxed italic mb-6">
-              "Our mission is to deliver honest, compassionate, and personalized care for pet owners and their pets, caring for and cherishing each patient as the beloved family member they are."
-            </blockquote>
-            <p class="text-slate leading-relaxed mb-6">
-              All About Pets Veterinary Hospital is a full-service veterinary hospital treating cats and dogs in Canonsburg and Washington, PA. We use modern technology and continuous staff training to deliver individualized care — because every pet deserves a team that truly knows them.
-            </p>
-            <a href="/about" class="btn btn-outline text-sm">Meet the Full Team</a>
-          </div>
-        </div>
+  <!-- ===== SERVICES ===== -->
+  <section class="section services-section">
+    <div class="wrap-wide">
+      <div style="text-align:center;margin-bottom:var(--space-2xl);">
+        <p class="eyebrow">What We Do</p>
+        <h2 style="margin-top:var(--space-sm);">Our Veterinary Services</h2>
       </div>
-    </div>
-  </section>
 
-  <!-- Services — clean grid -->
-  <section class="bg-sand py-20 lg:py-28">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 reveal">
-        <div>
-          <p class="text-teal text-sm font-semibold uppercase tracking-wider mb-2">What We Do</p>
-          <h2 class="text-3xl md:text-4xl font-bold text-charcoal">Our Services</h2>
-        </div>
-        <a href="/services" class="text-teal font-semibold text-sm hover:text-teal-dark transition-colors">
-          View all 9 services →
-        </a>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
-        {services.map(s => (
-          <a href={s.href} class="group bg-white rounded-xl overflow-hidden card-lift border border-border">
-            <div class="aspect-[16/10] overflow-hidden bg-teal-mist">
-              <img src={s.image} alt={s.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" width="400" height="250" loading="lazy" />
-            </div>
-            <div class="px-5 py-4 flex items-center justify-between">
-              <h3 class="font-display font-semibold text-charcoal group-hover:text-teal transition-colors">{s.name}</h3>
-              <svg class="w-4 h-4 text-slate group-hover:text-teal transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-            </div>
+      <div class="services-mosaic">
+        {services.map((svc, i) => (
+          <a href={svc.href} class="svc-tile reveal" style={`--i:${i}`}>
+            <img src={svc.image} alt={svc.name} class="img-cover" loading="lazy" />
+            <div class="svc-tile-overlay"></div>
+            <h3 class="svc-tile-name">{svc.name}</h3>
           </a>
         ))}
       </div>
-    </div>
-  </section>
 
-  <!-- Testimonial — one powerful quote -->
-  <section class="py-20 lg:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <svg class="w-10 h-10 text-teal-pale mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
-      <blockquote class="text-xl md:text-2xl text-charcoal leading-relaxed mb-8">
-        They were very sweet and patient with my 2 Pits. Normally when I say I have a Pit they turn me away, but not them — they were so welcoming and showed my babies love.
-      </blockquote>
-      <cite class="not-italic text-slate font-medium">— Jelsamina C.</cite>
-      <div class="mt-8">
-        <a href="/testimonials" class="btn btn-outline text-sm">Read More Reviews</a>
+      <div style="text-align:center;margin-top:var(--space-xl);">
+        <a href="/services" class="btn btn-outline">View All Services</a>
       </div>
     </div>
   </section>
 
-  <!-- Two Locations -->
-  <section class="bg-teal py-16 lg:py-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-white">Two Locations to Serve You</h2>
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section section-raised testimonials-section">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--space-2xl);">
+        <p class="eyebrow">Client Reviews</p>
+        <h2 style="margin-top:var(--space-sm);">Kind Words</h2>
       </div>
-      <div class="grid md:grid-cols-2 gap-6 reveal">
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-          <h3 class="font-display text-lg font-bold text-white mb-4">Canonsburg</h3>
-          <address class="not-italic text-white/80 text-sm space-y-2">
-            <p><a href="https://goo.gl/maps/QMbPWvmcKiK28B9aA" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline underline-offset-4 decoration-white/30">155 E Pike St, Canonsburg, PA 15317</a></p>
-          </address>
-          <div class="text-sm text-white/60 mt-4 space-y-1">
-            <p>Monday: 7:00 AM – 4:00 PM</p>
-            <p>Wednesday: 10:00 AM – 7:00 PM</p>
-            <p>Friday: 7:00 AM – 12:00 PM</p>
+
+      <div class="testimonials-grid">
+        {reviews.map((review) => (
+          <div class="testimonial-card reveal">
+            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+            <blockquote>
+              <p>{review.text}</p>
+              <cite>— {review.author}</cite>
+            </blockquote>
           </div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-          <h3 class="font-display text-lg font-bold text-white mb-4">Washington</h3>
-          <address class="not-italic text-white/80 text-sm space-y-2">
-            <p><a href="https://goo.gl/maps/xhbDRCDundaSHjyHA" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline underline-offset-4 decoration-white/30">829 Jefferson Ave, Washington, PA 15301</a></p>
-          </address>
-          <div class="text-sm text-white/60 mt-4 space-y-1">
-            <p>Tuesday: 7:00 AM – 4:00 PM</p>
-            <p>Thursday: 10:00 AM – 7:00 PM</p>
-          </div>
-        </div>
+        ))}
       </div>
-      <div class="text-center mt-8">
-        <a href="/contact" class="btn btn-white">Contact Us</a>
+
+      <div style="text-align:center;margin-top:var(--space-xl);">
+        <a href="/reviews" class="btn btn-outline">Read More Reviews</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 lg:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <img src="/images/img-2.jpg" alt="Happy golden retriever" class="w-24 h-24 rounded-full object-cover mx-auto mb-6 shadow-md" width="96" height="96" loading="lazy" />
-      <h2 class="text-3xl md:text-4xl font-bold text-charcoal mb-4">Your Pets Deserve the Best</h2>
-      <p class="text-slate mb-8 max-w-lg mx-auto">We proudly serve pets in Canonsburg, Washington, PA, and the surrounding areas. Schedule a visit and see why our clients never take their pets anywhere else.</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/contact" class="btn btn-teal">Schedule a Visit</a>
+  <!-- ===== TEAM PREVIEW ===== -->
+  <section class="section team-preview">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--space-2xl);">
+        <p class="eyebrow">Our Team</p>
+        <h2 style="margin-top:var(--space-sm);">The People Behind the Care</h2>
+      </div>
+
+      <div class="team-row">
+        <div class="team-member reveal">
+          <div class="team-photo"><img src="/images/michele.webp" alt="Dr. Michele Sacksteder" loading="lazy" class="img-cover" /></div>
+          <h3>Dr. Michele Sacksteder</h3>
+          <p>DVM, Practice Owner</p>
+        </div>
+        <div class="team-member reveal">
+          <div class="team-photo"><img src="/images/jon.webp" alt="Jon" loading="lazy" class="img-cover" /></div>
+          <h3>Jon</h3>
+          <p>Management Staff</p>
+        </div>
+        <div class="team-member reveal">
+          <div class="team-photo"><img src="/images/erin.webp" alt="Erin" loading="lazy" class="img-cover" /></div>
+          <h3>Erin</h3>
+          <p>Client Service Specialist</p>
+        </div>
+        <div class="team-member reveal">
+          <div class="team-photo"><img src="/images/amy.webp" alt="Amy" loading="lazy" class="img-cover" /></div>
+          <h3>Amy</h3>
+          <p>Veterinary Technician</p>
+        </div>
+        <div class="team-member reveal">
+          <div class="team-photo"><img src="/images/arica.webp" alt="Arica" loading="lazy" class="img-cover" /></div>
+          <h3>Arica</h3>
+          <p>Veterinary Technician</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-xl);">
+        <a href="/team" class="btn btn-outline">Meet the Full Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA / LOCATIONS ===== -->
+  <section class="section cta-locations">
+    <div class="cta-bg">
+      <img src="/images/cat-and-dog.jpg" alt="Cat and dogs sitting together" class="img-cover" loading="lazy" />
+      <div class="cta-bg-overlay"></div>
+    </div>
+    <div class="wrap cta-inner">
+      <h2>Ready to Visit?</h2>
+      <p class="cta-sub">We proudly serve pets in Canonsburg and Washington, PA, and the surrounding areas.</p>
+
+      <div class="cta-locations-grid">
+        <div class="cta-loc">
+          <h3>Canonsburg</h3>
+          <address>155 E Pike St, Canonsburg, PA 15317</address>
+          <p>Mon 7a–4p &middot; Wed 10a–7p &middot; Fri 7a–12p</p>
+        </div>
+        <div class="cta-loc">
+          <h3>Washington</h3>
+          <address>829 Jefferson Ave, Washington, PA 15301</address>
+          <p>Tue 7a–4p &middot; Thu 10a–7p</p>
+        </div>
+      </div>
+
+      <div class="cta-actions">
+        <a href="/contact" class="btn btn-warm">Get in Touch</a>
         <a href="tel:7247455503" class="btn btn-outline">(724) 745-5503</a>
       </div>
     </div>
   </section>
+
 </Layout>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg,
+        oklch(0.14 0.015 260 / 0.95) 0%,
+        oklch(0.14 0.015 260 / 0.8) 35%,
+        oklch(0.14 0.015 260 / 0.4) 65%,
+        oklch(0.14 0.015 260 / 0.2) 100%
+      );
+  }
+
+  .hero-content {
+    position: relative;
+    padding-block: calc(var(--nav-h) + var(--space-xl)) var(--space-xl);
+  }
+
+  .hero-text {
+    max-width: 700px;
+  }
+
+  .hero-location {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-title {
+    line-height: 0.95;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-line-1 {
+    display: block;
+    font-size: var(--text-hero);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+  }
+
+  .hero-line-2 {
+    display: block;
+    font-size: clamp(4rem, 2rem + 10vw, 11rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    line-height: 0.85;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+    font-size: var(--text-lg);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-on-dark-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-tagline {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: oklch(0.88 0.008 75 / 0.7);
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+
+    & span {
+      display: block;
+      width: 20px;
+      height: 32px;
+      border: 2px solid oklch(0.88 0.008 75 / 0.3);
+      border-radius: 10px;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 3px;
+        height: 8px;
+        background: var(--warm);
+        border-radius: 2px;
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: none;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-scroll span::after {
+      animation: scrollBounce 1.8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    50% { transform: translateX(-50%) translateY(10px); opacity: 0.3; }
+  }
+
+  /* ===== ABOUT INTRO ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .about-photo {
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.1);
+    }
+  }
+
+  .about-text {
+    & h2 {
+      margin-block: var(--space-sm) var(--space-md);
+      color: var(--text-on-light);
+    }
+
+    & p {
+      color: var(--text-on-light-muted);
+      margin-bottom: var(--space-md);
+    }
+  }
+
+  /* ===== SERVICES MOSAIC ===== */
+  .services-mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: var(--space-md);
+  }
+
+  .svc-tile {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: block;
+
+    & img {
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.08);
+    }
+  }
+
+  .svc-tile:nth-child(1) { grid-row: span 2; }
+
+  .svc-tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      oklch(0.10 0.015 260 / 0.85) 0%,
+      oklch(0.10 0.015 260 / 0.2) 60%,
+      transparent 100%
+    );
+    transition: background 0.3s;
+  }
+
+  .svc-tile:hover .svc-tile-overlay {
+    background: linear-gradient(
+      to top,
+      oklch(0.10 0.015 260 / 0.7) 0%,
+      oklch(0.10 0.015 260 / 0.1) 60%,
+      transparent 100%
+    );
+  }
+
+  .svc-tile-name {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: var(--space-lg);
+    right: var(--space-lg);
+    font-size: var(--text-lg);
+    color: var(--cream);
+    z-index: 1;
+    transition: color 0.2s;
+  }
+
+  .svc-tile:hover .svc-tile-name {
+    color: var(--warm);
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .testimonial-card {
+    padding: var(--space-xl);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.3s;
+
+    &:hover { border-color: oklch(0.62 0.17 30 / 0.3); }
+  }
+
+  .testimonial-stars {
+    color: var(--warm);
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+  }
+
+  .testimonial-card blockquote p {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--text-on-dark-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .testimonial-card cite {
+    font-style: normal;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--cream);
+  }
+
+  /* ===== TEAM PREVIEW ===== */
+  .team-row {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .team-member {
+    text-align: center;
+    flex: 0 0 160px;
+  }
+
+  .team-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto var(--space-md);
+    border: 3px solid var(--dark-border);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .team-member:hover .team-photo {
+    border-color: var(--warm);
+    transform: scale(1.05);
+  }
+
+  .team-member h3 {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .team-member p {
+    font-size: var(--text-xs);
+    color: var(--text-on-dark-muted);
+  }
+
+  /* ===== CTA LOCATIONS ===== */
+  .cta-locations {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cta-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .cta-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: oklch(0.14 0.015 260 / 0.88);
+  }
+
+  .cta-inner {
+    position: relative;
+    text-align: center;
+  }
+
+  .cta-sub {
+    max-width: 520px;
+    margin-inline: auto;
+    margin-block: var(--space-md) var(--space-xl);
+    color: var(--text-on-dark-muted);
+  }
+
+  .cta-locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    max-width: 700px;
+    margin-inline: auto;
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta-loc {
+    padding: var(--space-lg);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-lg);
+
+    & h3 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-xs);
+      color: var(--warm);
+    }
+
+    & address {
+      font-style: normal;
+      font-size: var(--text-sm);
+      color: var(--text-on-dark-muted);
+      margin-bottom: var(--space-xs);
+    }
+
+    & p {
+      font-size: var(--text-xs);
+      color: var(--text-on-dark-muted);
+    }
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .services-mosaic {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 220px;
+    }
+    .svc-tile:nth-child(1) { grid-row: span 1; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo { max-width: 400px; margin-inline: auto; }
+    .cta-locations-grid { grid-template-columns: 1fr; }
+    .hero-line-2 { font-size: clamp(3.5rem, 2rem + 8vw, 6rem); }
+  }
+
+  @media (max-width: 500px) {
+    .services-mosaic { grid-template-columns: 1fr; }
+    .team-row { gap: var(--space-lg); }
+  }
+</style>

@@ -1,30 +1,26 @@
 ---
-import '../styles/global.css';
 import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
-  description: string;
-  canonical?: string;
+  description?: string;
   ogImage?: string;
-  jsonLd?: Record<string, unknown>;
+  jsonLd?: object;
 }
 
-const { title, description, canonical, ogImage, jsonLd } = Astro.props;
-const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).href;
-const ogImg = ogImage || '/images/cat-and-dog.jpg';
+const { title, description = 'Full-service veterinary hospital treating cats and dogs in Canonsburg and Washington, PA. Led by Dr. Michele Sacksteder, DVM.', ogImage = '/images/img-2.jpg', jsonLd } = Astro.props;
+const currentPath = Astro.url.pathname;
+const canonicalUrl = new URL(currentPath, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/testimonials', label: 'Reviews' },
-  { href: '/payment-options', label: 'Payment' },
-  { href: '/contact', label: 'Contact' },
+  { label: 'About', href: '/about' },
+  { label: 'Team', href: '/team' },
+  { label: 'Services', href: '/services' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Contact', href: '/contact' },
 ];
-
-const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -35,144 +31,380 @@ const currentPath = Astro.url.pathname;
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
-  <meta property="og:type" content="website" />
+
+  <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:image" content={new URL(ogImg, Astro.site).href} />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content={ogImageUrl} />
   <meta property="og:site_name" content="All About Pets Veterinary Hospital" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={new URL(ogImg, Astro.site).href} />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+  <!-- Font preloading -->
+  <Font cssVariable="--font-display" preload />
+  <Font cssVariable="--font-body" preload />
+
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-  <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-  <Font cssVariable="--font-display" />
-  <Font cssVariable="--font-body" />
   <ClientRouter />
-  <script defer data-domain="aapvet.keithkelly.dev" src="https://api.keithkelly.dev/d/s/script.js"></script>
 </head>
-<body class="min-h-screen flex flex-col">
-  <a href="#main-content" class="skip-link">Skip to content</a>
+<body>
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
 
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border" id="site-header">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-18">
-        <a href="/" class="flex items-center gap-3" aria-label="All About Pets — Home">
-          <img src="/images/logo.jpg" alt="All About Pets Veterinary Hospital" class="h-10 w-auto rounded" width="152" height="40" />
-        </a>
+  <header class="site-header" id="site-header">
+    <nav class="site-nav wrap-wide" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="All About Pets Veterinary Hospital — Home">
+        <img src="/images/logo-cropped.jpg" alt="All About Pets Veterinary Hospital" width="200" height="52" />
+      </a>
 
-        <nav class="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
-          {navLinks.map(link => (
-            <a
-              href={link.href}
-              class:list={[
-                'px-3 py-1.5 rounded-md text-sm transition-colors',
-                currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                  ? 'bg-teal-pale text-teal font-semibold'
-                  : 'text-slate hover:text-teal hover:bg-teal-mist'
-              ]}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a href="https://aapvetcanonsburg.vetsfirstchoice.com/" target="_blank" rel="noopener noreferrer"
-             class="px-3 py-1.5 rounded-md text-sm text-slate hover:text-teal hover:bg-teal-mist transition-colors">
-            Pharmacy
-            <svg class="inline w-3 h-3 ml-0.5 -mt-0.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-          </a>
-        </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
 
-        <div class="hidden lg:flex items-center gap-3">
-          <a href="tel:7247455503" class="text-sm text-teal font-semibold hover:text-teal-dark transition-colors">(724) 745-5503</a>
-          <a href="/contact" class="btn btn-teal !text-xs !py-2 !px-4">Book Visit</a>
-        </div>
-
-        <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate" aria-label="Open menu" aria-expanded="false">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-        </button>
-      </div>
-    </div>
-
-    <div id="mobile-nav" class="mobile-nav fixed inset-0 z-50 bg-white lg:hidden" aria-hidden="true">
-      <div class="flex items-center justify-between h-18 px-4 sm:px-6 border-b border-border">
-        <img src="/images/logo.jpg" alt="All About Pets" class="h-10 w-auto rounded" width="152" height="40" />
-        <button id="mobile-close-btn" class="p-2 text-slate" aria-label="Close menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-      </div>
-      <nav class="px-6 py-6 flex flex-col gap-1" aria-label="Mobile navigation">
-        {navLinks.map(link => (
-          <a href={link.href} class:list={['px-4 py-3 rounded-lg text-lg transition-colors', currentPath === link.href ? 'text-teal bg-teal-pale font-semibold' : 'text-slate hover:text-teal']}>
-            {link.label}
-          </a>
-        ))}
-        <div class="mt-6 pt-6 border-t border-border space-y-3">
-          <a href="tel:7247455503" class="btn btn-outline justify-center w-full">(724) 745-5503</a>
-          <a href="/contact" class="btn btn-teal justify-center w-full">Book a Visit</a>
-        </div>
-      </nav>
-    </div>
+      <ul class="nav-links" id="nav-links" role="list">
+        {navLinks.map(link => {
+          const isActive = currentPath === link.href || currentPath.startsWith(link.href + '/');
+          return (
+            <li>
+              <a
+                href={link.href}
+                class:list={['nav-link', { active: isActive }]}
+                {...(isActive ? { 'aria-current': 'page' } : {})}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+        <li class="nav-cta-item">
+          <a href="tel:7247455503" class="btn btn-warm nav-cta-btn">(724) 745-5503</a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="main-content" class="flex-1">
+  <main id="main-content">
     <slot />
   </main>
 
-  <footer class="bg-charcoal text-white/70">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div class="lg:col-span-2">
-          <img src="/images/logo-transparent.png" alt="All About Pets Veterinary Hospital" class="h-10 w-auto invert brightness-200" width="152" height="40" />
-          <p class="text-sm mt-4 leading-relaxed max-w-sm">Honest, compassionate, individualized care — treating your pets as the beloved family members they are.</p>
-          <a href="https://www.facebook.com/aapvet/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="inline-block mt-4 text-white/40 hover:text-teal-light transition-colors">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/logo-cropped.jpg" alt="All About Pets Veterinary Hospital" width="220" height="58" class="footer-logo" />
+          <p class="footer-tagline">Doing what's best for your pet everyday</p>
+          <a href="https://www.facebook.com/aapvet/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Follow us on Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
         </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-4">Canonsburg</h3>
-          <address class="not-italic text-sm space-y-1">
-            <p><a href="https://goo.gl/maps/QMbPWvmcKiK28B9aA" target="_blank" rel="noopener noreferrer" class="hover:text-teal-light transition-colors">155 E Pike St<br />Canonsburg, PA 15317</a></p>
+
+        <div class="footer-location">
+          <h4>Canonsburg</h4>
+          <address>
+            <a href="https://goo.gl/maps/QMbPWvmcKiK28B9aA" target="_blank" rel="noopener noreferrer">155 E Pike St<br/>Canonsburg, PA 15317</a>
           </address>
-          <div class="text-xs mt-3 space-y-0.5 text-white/50">
-            <p>Mon 7am–4pm</p>
-            <p>Wed 10am–7pm</p>
-            <p>Fri 7am–12pm</p>
-          </div>
+          <p class="footer-hours">Mon 7a–4p &middot; Wed 10a–7p &middot; Fri 7a–12p</p>
         </div>
-        <div>
-          <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-4">Washington</h3>
-          <address class="not-italic text-sm space-y-1">
-            <p><a href="https://goo.gl/maps/xhbDRCDundaSHjyHA" target="_blank" rel="noopener noreferrer" class="hover:text-teal-light transition-colors">829 Jefferson Ave<br />Washington, PA 15301</a></p>
+
+        <div class="footer-location">
+          <h4>Washington</h4>
+          <address>
+            <a href="https://goo.gl/maps/xhbDRCDundaSHjyHA" target="_blank" rel="noopener noreferrer">829 Jefferson Ave<br/>Washington, PA 15301</a>
           </address>
-          <div class="text-xs mt-3 space-y-0.5 text-white/50">
-            <p>Tue 7am–4pm</p>
-            <p>Thu 10am–7pm</p>
-          </div>
+          <p class="footer-hours">Tue 7a–4p &middot; Thu 10a–7p</p>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Get in Touch</h4>
+          <p><a href="tel:7247455503">Phone: (724) 745-5503</a></p>
+          <p><a href="sms:7246338216">Text: (724) 633-8216</a></p>
+          <p><a href="mailto:allaboutpets@aapvet.com">allaboutpets@aapvet.com</a></p>
+          <a href="https://aapvetcanonsburg.vetsfirstchoice.com/" target="_blank" rel="noopener noreferrer" class="footer-pharmacy-link">Online Pharmacy &rarr;</a>
         </div>
       </div>
-      <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-        <p>&copy; {new Date().getFullYear()} All About Pets Veterinary Hospital</p>
-        <div class="flex items-center gap-4">
-          <a href="tel:7247455503" class="hover:text-white/60 transition-colors">(724) 745-5503</a>
-          <span class="text-white/20">·</span>
-          <span>Text: <a href="sms:7246338216" class="hover:text-white/60 transition-colors">(724) 633-8216</a></span>
-          <span class="text-white/20">·</span>
-          <a href="mailto:allaboutpets@aapvet.com" class="hover:text-white/60 transition-colors">allaboutpets@aapvet.com</a>
-        </div>
+
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} All About Pets Veterinary Hospital LLC</p>
       </div>
     </div>
   </footer>
 
   <script>
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const closeBtn = document.getElementById('mobile-close-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    function open() { mobileNav?.classList.add('open'); mobileNav?.setAttribute('aria-hidden','false'); menuBtn?.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
-    function close() { mobileNav?.classList.remove('open'); mobileNav?.setAttribute('aria-hidden','true'); menuBtn?.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
-    menuBtn?.addEventListener('click', open);
-    closeBtn?.addEventListener('click', close);
-    mobileNav?.querySelectorAll('a').forEach(l => l.addEventListener('click', close));
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    const header = document.getElementById('site-header');
+
+    toggle?.addEventListener('click', () => {
+      const open = links?.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    links?.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    let lastY = 0;
+    const onScroll = () => {
+      const y = window.scrollY;
+      header?.classList.toggle('scrolled', y > 40);
+      header?.classList.toggle('hidden', y > 300 && y > lastY);
+      lastY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   </script>
 </body>
 </html>
+
+<style>
+  /* Skip to content */
+  .skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: var(--space-md);
+    z-index: 200;
+    padding: 0.75em 1.5em;
+    background: var(--warm);
+    color: var(--dark);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    border-radius: 0 0 var(--radius) var(--radius);
+    transition: top 0.2s;
+
+    &:focus {
+      top: 0;
+    }
+  }
+
+  .site-header {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 100;
+    padding-block: var(--space-sm);
+    transition: background 0.3s, transform 0.3s, padding 0.3s;
+  }
+
+  .site-header.scrolled {
+    background: oklch(0.14 0.015 260 / 0.92);
+    backdrop-filter: blur(12px);
+    padding-block: var(--space-xs);
+  }
+
+  .site-header.hidden {
+    transform: translateY(-100%);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .nav-logo img {
+    height: 40px;
+    width: auto;
+    filter: invert(1);
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 0.8; }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .nav-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text-on-dark);
+    position: relative;
+    padding: 0.5em 0.25em;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--warm);
+      transition: width 0.25s ease;
+    }
+
+    &:hover::after,
+    &.active::after { width: 100%; }
+    &.active { color: var(--warm); }
+  }
+
+  .nav-cta-item {
+    margin-left: var(--space-xs);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+
+    & span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-lg);
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      z-index: 100;
+    }
+
+    .nav-links.open { transform: translateX(0); }
+
+    .nav-link { font-size: var(--text-xl); }
+
+    .nav-cta-item { margin: 0; }
+
+    .nav-toggle[aria-expanded="true"] {
+      & span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      & span:nth-child(2) { opacity: 0; }
+      & span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header { transition: none; }
+    .nav-links { transition: none; }
+    .nav-toggle span { transition: none; }
+    .nav-link::after { transition: none; }
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--dark-border);
+    padding-block: var(--space-2xl) var(--space-xl);
+    background: var(--dark);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .footer-logo {
+    height: 44px;
+    width: auto;
+    filter: invert(1);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-tagline {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--text-on-dark-muted);
+    transition: color 0.2s;
+    &:hover { color: var(--warm); }
+  }
+
+  .footer-location h4,
+  .footer-contact h4 {
+    font-size: var(--text-xs);
+    font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-location address,
+  .footer-contact p {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+    line-height: 1.7;
+  }
+
+  .footer-location address a,
+  .footer-contact a {
+    color: var(--text-on-dark-muted);
+    &:hover { color: var(--cream); }
+  }
+
+  .footer-hours {
+    margin-top: var(--space-xs);
+    font-size: var(--text-xs);
+    color: var(--text-on-dark-muted);
+  }
+
+  .footer-pharmacy-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--warm);
+    &:hover { color: var(--warm-hover); }
+  }
+
+  .footer-bottom {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--dark-border);
+    font-size: var(--text-xs);
+    color: var(--text-on-dark-muted);
+  }
+
+  @media (max-width: 860px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 500px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

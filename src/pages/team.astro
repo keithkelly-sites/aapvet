@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const team = [
+  {
+    name: 'Dr. Michele Sacksteder',
+    role: 'DVM, Practice Owner',
+    image: '/images/michele.webp',
+    featured: true,
+  },
+  { name: 'Jon', role: 'Management Staff', image: '/images/jon.webp' },
+  { name: 'Erin', role: 'Client Service Specialist', image: '/images/erin.webp' },
+  { name: 'Amy', role: 'Veterinary Technician', image: '/images/amy.webp' },
+  { name: 'Arica', role: 'Veterinary Technician', image: '/images/arica.webp' },
+];
+---
+
+<Layout
+  title="Meet Our Team | All About Pets Veterinary Hospital"
+  description="Meet Dr. Michele Sacksteder, DVM, and the team at All About Pets Veterinary Hospital in Canonsburg, PA. Dedicated to compassionate, personalized pet care."
+>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Our Team</p>
+      <h1>The People Behind<br/>the Care</h1>
+      <div class="accent-bar"></div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section section-raised">
+    <div class="wrap" style="max-width:700px;text-align:center;">
+      <p style="font-size:var(--text-lg);color:var(--text-on-dark-muted);">
+        We're solely dedicated to your pet's care. We look forward to getting to know you, and we hope you'll take a moment to get to know us.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dr. Michele — Featured -->
+  <section class="section section-light">
+    <div class="wrap">
+      <div class="vet-feature">
+        <div class="vet-photo reveal">
+          <img src="/images/michele.webp" alt="Dr. Michele Sacksteder, DVM, holding a dog" class="img-cover" loading="lazy" />
+        </div>
+        <div class="vet-info">
+          <p class="eyebrow">Meet Our Veterinarian</p>
+          <h2>Dr. Michele Sacksteder</h2>
+          <p class="vet-title">DVM, Practice Owner</p>
+          <blockquote class="vet-quote">
+            "Dr. S is so thorough and caring. She listens and takes the time to answer all questions and concerns."
+            <cite>— Susan F.</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff Grid -->
+  <section class="section">
+    <div class="wrap">
+      <h2 style="text-align:center;margin-bottom:var(--space-2xl);">Meet Our Staff</h2>
+      <div class="staff-grid">
+        {team.filter(m => !m.featured).map((member) => (
+          <div class="staff-card reveal">
+            <div class="staff-photo">
+              <img src={member.image} alt={member.name} class="img-cover" loading="lazy" />
+            </div>
+            <div class="staff-info">
+              <h3>{member.name}</h3>
+              <p>{member.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-light" style="text-align:center;">
+    <div class="wrap">
+      <h2>Ready to Visit?</h2>
+      <p style="max-width:540px;margin-inline:auto;margin-bottom:var(--space-lg);color:var(--text-on-light-muted);">
+        We proudly serve pets in Canonsburg and Washington, PA, and the surrounding areas.
+      </p>
+      <a href="/contact" class="btn btn-warm">Get in Touch</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-h) + var(--space-3xl));
+    padding-bottom: var(--space-2xl);
+    background: var(--dark);
+    text-align: center;
+
+    & h1 { margin-block: var(--space-sm) var(--space-md); }
+    & .accent-bar { margin-inline: auto; }
+  }
+
+  /* Dr. Michele Feature */
+  .vet-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .vet-photo {
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 24px 24px 0 oklch(0.62 0.17 30 / 0.12);
+  }
+
+  .vet-info {
+    & h2 {
+      margin-block: var(--space-sm) var(--space-2xs);
+      color: var(--text-on-light);
+    }
+  }
+
+  .vet-title {
+    font-size: var(--text-lg);
+    color: var(--text-on-light-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .vet-quote {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    color: var(--text-on-light);
+    padding-left: var(--space-lg);
+    border-left: 3px solid var(--warm);
+
+    & cite {
+      display: block;
+      margin-top: var(--space-sm);
+      font-size: var(--text-sm);
+      font-style: normal;
+      font-family: var(--font-body, 'DM Sans', system-ui, sans-serif);
+      color: var(--text-on-light-muted);
+    }
+  }
+
+  /* Staff Grid */
+  .staff-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .staff-card {
+    text-align: center;
+  }
+
+  .staff-photo {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+    border: 3px solid var(--dark-border);
+    transition: border-color 0.3s;
+  }
+
+  .staff-card:hover .staff-photo {
+    border-color: var(--warm);
+  }
+
+  .staff-info h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .staff-info p {
+    font-size: var(--text-sm);
+    color: var(--text-on-dark-muted);
+  }
+
+  @media (max-width: 700px) {
+    .vet-feature { grid-template-columns: 1fr; }
+    .vet-photo { max-width: 400px; margin-inline: auto; }
+    .staff-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

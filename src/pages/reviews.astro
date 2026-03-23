@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const reviews = [
+  {
+    text: "Dr. Sacksteder and her staff have gone above and beyond to take care of my pup. She's a rescue with lots of anxiety and doesn't do well with strangers, but they've all been so patient and understanding and have worked with her every step of the way to provide the best care possible. I'll never take my pets anywhere else.",
+    author: 'Becky P.',
+  },
+  {
+    text: "First-time visit, and I was very pleased with the outcome. They were super polite and professional. Extremely knowledgeable, too, which shouldn't have to be said but unfortunately needs to be, and it was very much appreciated. They were very sweet and patient with my 2 Pits. Normally when I say I have a Pit they turn me away, but not them — they were so welcoming and showed my babies love.",
+    author: 'Jelsamina C.',
+  },
+  {
+    text: "Dr. S is so thorough and caring. She listens and takes the time to answer all questions and concerns and help my Georgie feel better. Highly recommend this vet.",
+    author: 'Susan F.',
+  },
+  {
+    text: "Been coming here for years. It's the level of care, compassion, and love they have for our animals that keeps us coming back. Amazing people!",
+    author: 'Patrick K.',
+  },
+  {
+    text: "I had a wonderful experience with Dr. S and my two elderly cats. The whole staff was very caring, and it's obvious they have pride in what they do. I didn't feel rushed, and they took the time to talk with me about medication and different options. Very happy I took my babies there!",
+    author: 'Rachel B.',
+  },
+  {
+    text: "All About Pets is hands down the best veterinary clinic. Dr. S. and her staff are so compassionate and caring for every pet that comes through the door. Dr. S. is always eager to give you a hug and assure you everything will be okay. When you leave, you know your pet is in good hands, and she and her staff are doing everything possible to keep your pet healthy.",
+    author: 'Ruth F.',
+  },
+];
+---
+
+<Layout
+  title="Client Reviews | All About Pets Veterinary Hospital"
+  description="Read what pet owners in Canonsburg and Washington, PA say about All About Pets Veterinary Hospital. Real reviews from real clients."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Reviews</p>
+      <h1>Kind Words From<br/>Our Clients</h1>
+      <div class="accent-bar"></div>
+      <p class="hero-sub">Your kind words mean the world to us, and we're thankful you've taken the time to share your experience.</p>
+    </div>
+  </section>
+
+  <!-- Featured Review -->
+  <section class="section section-raised">
+    <div class="wrap">
+      <div class="featured-review reveal">
+        <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+        <blockquote>
+          <p>{reviews[0].text}</p>
+          <cite>— {reviews[0].author}</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Grid -->
+  <section class="section">
+    <div class="wrap">
+      <div class="reviews-grid">
+        {reviews.slice(1).map((review) => (
+          <div class="review-card card reveal">
+            <div class="review-stars" aria-label="5 stars">
+              {'★'.repeat(5)}
+            </div>
+            <p class="review-text">{review.text}</p>
+            <cite class="review-author">— {review.author}</cite>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-light" style="text-align:center;">
+    <div class="wrap">
+      <h2>Join the Family</h2>
+      <p style="max-width:540px;margin-inline:auto;margin-bottom:var(--space-lg);color:var(--text-on-light-muted);">
+        We'd love for you and your pet to experience the same care our clients rave about.
+      </p>
+      <div style="display:flex;gap:var(--space-sm);justify-content:center;flex-wrap:wrap;">
+        <a href="/contact" class="btn btn-warm">Schedule a Visit</a>
+        <a href="https://www.google.com/search?q=All+About+Pets+Veterinary+Hospital+Canonsburg+PA+reviews" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark">Read More on Google</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-h) + var(--space-3xl));
+    padding-bottom: var(--space-2xl);
+    background: var(--dark);
+    text-align: center;
+
+    & h1 { margin-block: var(--space-sm) var(--space-md); }
+    & .accent-bar { margin-inline: auto; }
+  }
+
+  .hero-sub {
+    max-width: 520px;
+    margin-inline: auto;
+    margin-top: var(--space-lg);
+    color: var(--text-on-dark-muted);
+  }
+
+  /* Featured Review */
+  .featured-review {
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: center;
+    position: relative;
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .quote-mark {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-size: clamp(6rem, 10vw, 12rem);
+    line-height: 0.6;
+    color: oklch(0.62 0.17 30 / 0.15);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .featured-review blockquote p {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-size: var(--text-xl);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--cream);
+    position: relative;
+  }
+
+  .featured-review cite {
+    display: block;
+    margin-top: var(--space-lg);
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--warm);
+    font-weight: 600;
+  }
+
+  /* Reviews Grid */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .review-card {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-stars {
+    color: var(--warm);
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+  }
+
+  .review-text {
+    flex: 1;
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--text-on-dark-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .review-author {
+    font-style: normal;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--cream);
+  }
+</style>

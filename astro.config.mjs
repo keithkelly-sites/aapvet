@@ -1,28 +1,26 @@
 import { defineConfig, fontProviders } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://aapvet.keithkelly.dev',
   output: 'static',
   integrations: [sitemap()],
-  vite: { plugins: [tailwindcss()] },
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Bitter',
+      name: 'Playfair Display',
       cssVariable: '--font-display',
-      weights: [300, 400, 500, 600, 700, 800],
+      weights: [400, 500, 600, 700, 800, 900],
       styles: ['normal', 'italic'],
-      fallbacks: ['serif'],
+      fallbacks: ['Georgia', 'serif'],
     },
     {
       provider: fontProviders.google(),
-      name: 'Lora',
+      name: 'DM Sans',
       cssVariable: '--font-body',
-      weights: [400, 500, 600, 700],
-      styles: ['normal', 'italic'],
-      fallbacks: ['serif'],
+      weights: [300, 400, 500, 600, 700],
+      styles: ['normal'],
+      fallbacks: ['system-ui', 'sans-serif'],
     },
   ],
 });

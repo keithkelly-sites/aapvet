@@ -1,176 +1,183 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const team = [
-  { name: 'Jon', role: 'Management Staff', image: '/images/jon.webp' },
-  { name: 'Erin', role: 'Client Service Specialist', image: '/images/erin.webp' },
-  { name: 'Amy', role: 'Team Member', image: '/images/amy.webp' },
-  { name: 'Arica', role: 'Team Member', image: '/images/arica.webp' },
-];
 ---
 
 <Layout
-  title="About Us | All About Pets Veterinary Hospital"
-  description="Meet Dr. Michele Sacksteder and the team at All About Pets Veterinary Hospital in Canonsburg and Washington, PA. Compassionate, personalized veterinary care."
+  title="About All About Pets Veterinary Hospital | Canonsburg, PA"
+  description="Meet the compassionate team at All About Pets Veterinary Hospital. Learn about our mission, values, and commitment to quality care in Canonsburg and Washington, PA."
 >
-  <!-- Hero -->
-  <section class="bg-teal-mist py-16 md:py-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl">
-        <p class="text-teal text-sm font-semibold uppercase tracking-wider mb-3">Who We Are</p>
-        <h1 class="text-4xl sm:text-5xl font-bold text-charcoal leading-tight mb-6">
-          The People Behind Your Pet's Care
-        </h1>
-        <p class="text-slate text-lg leading-relaxed">
-          A small, dedicated team in Canonsburg and Washington, PA — united by one belief: your pets are family, and they deserve to be treated that way.
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">About Us</p>
+      <h1>Where Every Pet<br/>Is Family</h1>
+      <div class="accent-bar"></div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section section-light">
+    <div class="wrap">
+      <div class="mission-layout">
+        <div class="mission-text">
+          <h2>Our Mission</h2>
+          <p class="mission-statement">
+            To deliver honest, compassionate, and personalized care for pet owners and their pets, caring for and cherishing each patient as the beloved family member they are.
+          </p>
+          <div class="accent-bar"></div>
+        </div>
+        <div class="mission-image reveal">
+          <img src="/images/cat-and-dog.jpg" alt="Cat and dogs sitting together in bed" class="img-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section section-raised">
+    <div class="wrap">
+      <div class="story-content reveal">
+        <h2>The Practice</h2>
+        <p>
+          All About Pets Veterinary Hospital serves Canonsburg, Washington, PA, and the surrounding communities. Led by Dr. Michele Sacksteder, a licensed and experienced veterinarian, the clinic delivers personalized care that puts your pet's health and happiness first.
+        </p>
+        <p>
+          We believe pets are family. By maintaining a highly trained and compassionate staff, we make sure every pet receives the attentive care they deserve. We use only the safest and most effective vaccines, tailored to meet each pet's individual needs, and follow proven vaccination protocols to promote long-term wellness.
+        </p>
+        <p>
+          Our hospital is equipped with modern, well-maintained technology to support accurate diagnostics and effective treatment. We stay current with progressive veterinary practices to educate and empower pet owners, so your companions live their healthiest lives.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Mission quote -->
-  <section class="py-16 lg:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-      <div class="bg-teal-pale rounded-2xl px-8 py-10 sm:px-12 sm:py-12 border-l-4 border-teal">
-        <svg class="w-8 h-8 text-teal mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-        </svg>
-        <blockquote class="text-xl sm:text-2xl font-display font-semibold text-charcoal leading-relaxed italic">
-          "Our mission is to deliver honest, compassionate, and personalized care for pet owners and their pets, caring for and cherishing each patient as the beloved family member they are."
-        </blockquote>
-        <p class="mt-6 text-teal font-semibold">— Dr. Michele Sacksteder, DVM</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About text + Dr. Michele -->
-  <section class="pb-16 lg:pb-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-5 gap-12 items-start reveal">
-        <!-- Photo -->
-        <div class="lg:col-span-2">
-          <div class="relative">
-            <img
-              src="/images/michele.webp"
-              alt="Dr. Michele Sacksteder, DVM — Practice Owner"
-              class="w-full rounded-2xl shadow-lg object-cover aspect-[3/4]"
-              width="400" height="533" loading="lazy"
-            />
-            <div class="mt-4 bg-white border border-border rounded-xl px-5 py-4 shadow-sm">
-              <p class="font-display font-bold text-charcoal text-lg">Dr. Michele Sacksteder</p>
-              <p class="text-teal text-sm font-medium mt-0.5">DVM, Practice Owner</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Text -->
-        <div class="lg:col-span-3 space-y-5 text-slate leading-relaxed">
-          <h2 class="text-3xl font-bold text-charcoal">About Our Hospital</h2>
-          <p>
-            All About Pets Veterinary Hospital is a full-service veterinary medical facility located in the Canonsburg, PA, area for everything pet-related. We are committed to providing the highest quality of care at a reasonable cost.
-          </p>
-          <p>
-            Led by Dr. Michele Sacksteder, a licensed and experienced veterinarian, our practice is built on the belief that pets are family. We take the time to listen, explain, and personalize every treatment plan — because no two animals are exactly the same.
-          </p>
-          <p>
-            We believe pets are family, and they deserve to be treated as such. Every pet that comes through our doors receives individualized attention and care tailored to their specific needs and stage of life.
-          </p>
-          <p>
-            Our hospital is equipped with modern, well-maintained technology to ensure accurate diagnoses and effective treatments. From digital radiology to laser therapy, we invest in the tools that make a real difference — and in the ongoing training that keeps our team at the leading edge of veterinary medicine.
-          </p>
-          <p>
-            Serving Canonsburg, Washington, and the surrounding communities of southwestern Pennsylvania, we're proud to be a veterinary partner families trust for the life of their pet.
-          </p>
-          <div class="pt-2">
-            <a href="/contact" class="btn btn-teal">
-              Schedule a Visit
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Grid -->
-  <section class="bg-sand py-16 lg:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 reveal">
-        <p class="text-teal text-sm font-semibold uppercase tracking-wider mb-2">The Team</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-charcoal">People Who Love What They Do</h2>
-        <p class="text-slate mt-4 max-w-xl mx-auto">Every member of our team is here because they genuinely care about animals. That shows in every interaction.</p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
-        {team.map(member => (
-          <div class="bg-white rounded-xl overflow-hidden border border-border card-lift text-center">
-            <div class="aspect-square overflow-hidden bg-teal-mist">
-              <img
-                src={member.image}
-                alt={member.name}
-                class="w-full h-full object-cover object-top"
-                width="300" height="300" loading="lazy"
-              />
-            </div>
-            <div class="px-5 py-4">
-              <p class="font-display font-bold text-charcoal text-lg">{member.name}</p>
-              <p class="text-teal text-sm font-medium mt-1">{member.role}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Values -->
-  <section class="py-16 lg:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 reveal">
-        <h2 class="text-3xl font-bold text-charcoal">What We Stand For</h2>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-8 reveal">
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-teal-pale flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-          </div>
-          <h3 class="font-display font-bold text-charcoal text-lg mb-2">Compassion First</h3>
-          <p class="text-slate text-sm leading-relaxed">We treat every patient with the same love and attention we'd give our own pets. No exceptions.</p>
+  <section class="section">
+    <div class="wrap">
+      <h2 class="values-heading reveal">What Sets Us Apart</h2>
+      <div class="values-grid">
+        <div class="value-item reveal">
+          <span class="value-number">01</span>
+          <h3>Honest Care</h3>
+          <p>We recommend only what your pet truly needs. No upselling, no unnecessary procedures.</p>
         </div>
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-teal-pale flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <h3 class="font-display font-bold text-charcoal text-lg mb-2">Honest Care</h3>
-          <p class="text-slate text-sm leading-relaxed">Straightforward advice, clear communication, and recommendations that put your pet's health first — always.</p>
+        <div class="value-item reveal">
+          <span class="value-number">02</span>
+          <h3>Individual Attention</h3>
+          <p>We take the time to know every patient by name. Your pet isn't a chart number here.</p>
         </div>
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-teal-pale flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-            </svg>
-          </div>
-          <h3 class="font-display font-bold text-charcoal text-lg mb-2">Modern Medicine</h3>
-          <p class="text-slate text-sm leading-relaxed">Up-to-date equipment and continuing education so your pets receive care that reflects the best of what veterinary medicine offers.</p>
+        <div class="value-item reveal">
+          <span class="value-number">03</span>
+          <h3>Modern Technology</h3>
+          <p>Digital radiology, laser therapy, in-house pharmacy. The tools to get answers fast and treat effectively.</p>
+        </div>
+        <div class="value-item reveal">
+          <span class="value-number">04</span>
+          <h3>Two Locations</h3>
+          <p>Canonsburg and Washington, PA. Open on alternating days so we're available when you need us.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="bg-teal py-16 lg:py-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <h2 class="text-3xl font-bold text-white mb-4">Ready to Meet the Team?</h2>
-      <p class="text-white/80 mb-8 max-w-lg mx-auto">We'd love to meet you and your pet. Schedule a visit at either of our two locations.</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/contact" class="btn btn-white">Schedule a Visit</a>
-        <a href="tel:7247455503" class="btn btn-outline !border-white !text-white hover:!bg-white hover:!text-teal">(724) 745-5503</a>
+  <section class="section section-light cta-section">
+    <div class="wrap" style="text-align:center;">
+      <h2>Ready to Visit?</h2>
+      <p style="max-width:540px;margin-inline:auto;margin-bottom:var(--space-lg);">
+        We proudly serve pets in Canonsburg and Washington, PA, and the surrounding areas.
+      </p>
+      <div style="display:flex;gap:var(--space-sm);justify-content:center;flex-wrap:wrap;">
+        <a href="/contact" class="btn btn-warm">Get in Touch</a>
+        <a href="/team" class="btn btn-outline-dark">Meet the Team</a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-h) + var(--space-3xl));
+    padding-bottom: var(--space-2xl);
+    background: var(--dark);
+    text-align: center;
+
+    & h1 { margin-block: var(--space-sm) var(--space-md); }
+    & .accent-bar { margin-inline: auto; }
+  }
+
+  .mission-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .mission-statement {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-size: var(--text-xl);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-on-light);
+    margin-block: var(--space-md) var(--space-lg);
+  }
+
+  .mission-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 5/4;
+  }
+
+  .story-content {
+    max-width: 720px;
+    margin-inline: auto;
+
+    & h2 { margin-bottom: var(--space-lg); }
+    & p { margin-bottom: var(--space-md); color: var(--text-on-dark-muted); }
+    & p:last-child { margin-bottom: 0; }
+  }
+
+  .values-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .value-item {
+    padding: var(--space-lg);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.3s;
+
+    &:hover { border-color: var(--warm); }
+  }
+
+  .value-number {
+    font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: oklch(0.62 0.17 30 / 0.2);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .value-item h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-xs);
+  }
+
+  .value-item p {
+    color: var(--text-on-dark-muted);
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 700px) {
+    .mission-layout { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+  }
+</style>
